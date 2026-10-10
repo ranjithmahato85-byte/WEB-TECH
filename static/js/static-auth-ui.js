@@ -21,7 +21,7 @@
       var profile = await root.VotingAuth.getCurrentProfile();
       message('Login successful. Redirecting...', false);
       window.setTimeout(function () {
-        window.location.href = profile && profile.role === 'admin' ? './admin/index.html' : './voter/index.html';
+        window.location.href = profile && profile.role === 'admin' ? './admin/dashboard.html' : './voter/dashboard.html';
       }, 250);
       return data;
     } catch (error) {
@@ -77,7 +77,7 @@
   if (authActions && root.VotingAuth) {
     root.VotingAuth.getCurrentProfile().then(function (profile) {
       if (!profile) return;
-      var dashboard = profile.role === 'admin' ? './admin/index.html' : './voter/index.html';
+      var dashboard = profile.role === 'admin' ? './admin/dashboard.html' : './voter/dashboard.html';
       authActions.innerHTML = '<a href="' + dashboard + '" class="btn btn-outline-primary btn-sm">Dashboard</a><button type="button" class="btn btn-outline btn-sm" data-signout>Logout</button>';
       authActions.querySelector('[data-signout]').addEventListener('click', function () {
         root.VotingAuth.signOut().then(function () { window.location.reload(); });

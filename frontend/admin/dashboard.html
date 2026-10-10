@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Nepal Online Voting System</title>
+  <link rel="stylesheet" href="../../static/css/style.css">
+  <link rel="stylesheet" href="../../static/css/dashboard.css">
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/images/nepal-flag.svg">
+</head>
+<body data-required-role="admin">
+  <div class="dashboard-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar"><img src="../../static/images/candidates/voter-avatar.svg" alt="Administrator avatar"></div>
+        <div class="sidebar-user-info"><span class="sidebar-user-name" data-profile-name>Loading...</span><div class="sidebar-user-role"><span>Administrator</span></div></div>
+      </div>
+      <nav class="sidebar-nav" aria-label="Admin navigation">
+        <a href="./dashboard.html" class="sidebar-link active"><span>Dashboard</span></a>
+        <a href="./elections.html" class="sidebar-link"><span>Elections</span></a>
+        <a href="./candidates.html" class="sidebar-link"><span>Candidates</span></a>
+        <a href="./audit.html" class="sidebar-link"><span>Audit Log</span></a>
+        <a href="../index.html" class="sidebar-link"><span>Public Site</span></a>
+        <button type="button" class="sidebar-link" data-sign-out style="border: 0; background: transparent; cursor: pointer; text-align: left; color: #f87171;"><span>Logout</span></button>
+      </nav>
+      <div class="sidebar-footer"><img src="../../static/images/nepal-flag.svg" alt="Nepal flag" class="sidebar-flag"><span class="sidebar-motto">Secure election administration</span></div>
+    </aside>
+    <div class="main-content">
+      <header class="top-bar"><div class="page-headline"><h1 class="page-title">Admin Dashboard</h1><span class="page-subtext">National Democratic Online Voting System</span></div><a href="../index.html" class="btn btn-outline btn-sm">Public Site</a></header>
+      <main class="content-body">
+        <section class="welcome-banner"><div><h2 class="welcome-title">Welcome, <span data-profile-name>administrator</span></h2><p class="welcome-subtitle">Review voter identities and citizenship documents before enabling ballot access.</p></div></section>
+        <div class="portal-status is-approved" data-profile-status role="status" aria-live="polite">Loading administrator status...</div>
+        <section class="dashboard-card" style="margin-top: 1.5rem;">
+          <div class="verification-toolbar"><h2>Voter verification</h2><a class="btn btn-outline btn-sm" href="#voter-applications">Review applications</a></div>
+          <div id="voter-applications" class="verification-list" data-voter-queue>Loading voter applications...</div>
+        </section>
+        <section class="dashboard-card" style="margin-top: 1.5rem;">
+          <div class="verification-toolbar"><h2>Citizenship documents</h2></div>
+          <div class="verification-list" data-document-queue>Loading citizenship documents...</div>
+        </section>
+        <div class="auth-message" data-admin-message role="alert" aria-live="polite"></div>
+        <template data-voter-row-template>
+          <article class="verification-item">
+            <h3 data-voter-name></h3>
+            <p class="verification-meta"><span data-voter-location></span> | <span data-voter-citizenship></span> | <span data-voter-status></span></p>
+            <label class="auth-help" for="verification-note">Review note</label>
+            <textarea class="verification-note" id="verification-note" data-voter-note placeholder="Explain the decision for the audit record."></textarea>
+            <div class="verification-controls" data-voter-controls>
+              <button type="button" data-status="approved">Approve voter</button>
+              <button type="button" data-status="rejected">Reject application</button>
+              <button type="button" data-status="suspended">Suspend account</button>
+            </div>
+          </article>
+        </template>
+        <template data-document-row-template>
+          <article class="verification-item">
+            <h3 data-document-voter></h3>
+            <p class="verification-meta">Citizenship document pending review</p>
+            <button class="portal-action" type="button" data-document-preview>Open private preview</button>
+            <label class="auth-help" for="document-note">Review note</label>
+            <textarea class="verification-note" id="document-note" data-document-note placeholder="Explain the document decision for the audit record."></textarea>
+            <div class="verification-controls" data-document-controls>
+              <button type="button" data-status="approved">Approve document</button>
+              <button type="button" data-status="rejected">Reject document</button>
+            </div>
+          </article>
+        </template>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../../static/js/supabase-config.js"></script><script src="../../static/js/supabase-client.js"></script><script src="../../static/js/supabase-auth.js"></script><script src="../../static/js/portal-page.js"></script><script src="../../static/js/admin-verification.js"></script>
+</body>
+</html>

@@ -220,6 +220,24 @@
     return response.data;
   }
 
+  async function getMyDocuments() {
+    const session = await getSession();
+    if (!session) {
+      throw new Error('Sign in to view your verification documents.');
+    }
+
+    const response = await getClient()
+      .from('verification_documents')
+      .select('id, document_type, status, review_note, created_at, reviewed_at')
+      .eq('voter_id', session.user.id)
+      .order('created_at', { ascending: false });
+
+    if (response.error) {
+      throw response.error;
+    }
+    return response.data;
+  }
+
   root.VotingAuth = {
     signUp: signUp,
     signIn: signIn,
@@ -231,6 +249,7 @@
     reviewVoter: reviewVoter,
     reviewDocument: reviewDocument,
     submitCitizenshipDocument: submitCitizenshipDocument,
-    getMyParticipation: getMyParticipation
+    getMyParticipation: getMyParticipation,
+    getMyDocuments: getMyDocuments
   };
 }(window));

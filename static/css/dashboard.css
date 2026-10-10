@@ -243,6 +243,67 @@
   margin-bottom: 1rem;
 }
 
+.profile-banner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: var(--radius-xl);
+}
+
+.profile-avatar {
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 3px solid #38bdf8;
+  border-radius: 50%;
+  background: #334155;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-banner h2 {
+  margin-bottom: 0.25rem;
+  color: #ffffff;
+}
+
+.profile-banner p {
+  margin: 0;
+  color: #cbd5e1;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.profile-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.profile-grid span {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.profile-grid strong {
+  color: #0f172a;
+  font-size: 0.95rem;
+}
+
 @media (max-width: 768px) {
   .dashboard-wrapper {
     display: block;
@@ -272,6 +333,10 @@
   }
 
   .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-grid {
     grid-template-columns: 1fr;
   }
 }

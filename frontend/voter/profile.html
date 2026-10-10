@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voter Profile - Nepal Online Voting System</title>
+  <link rel="stylesheet" href="../../static/css/style.css">
+  <link rel="stylesheet" href="../../static/css/dashboard.css">
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/images/nepal-flag.svg">
+</head>
+<body data-required-role="voter">
+  <div class="dashboard-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-user"><div class="sidebar-avatar"><img src="../../static/images/candidates/voter-avatar.svg" alt="Voter avatar"></div><div class="sidebar-user-info"><span class="sidebar-user-name" data-profile-name>Loading...</span><div class="sidebar-user-role"><span>Voter account</span></div></div></div>
+      <nav class="sidebar-nav" aria-label="Voter navigation">
+        <a href="./dashboard.html" class="sidebar-link"><span>Dashboard</span></a>
+        <a href="./elections.html" class="sidebar-link"><span>My Elections</span></a>
+        <a href="./status.html" class="sidebar-link"><span>Voting Status</span></a>
+        <a href="./profile.html" class="sidebar-link active"><span>Profile</span></a>
+        <a href="../index.html" class="sidebar-link"><span>Public Site</span></a>
+      </nav>
+      <div class="sidebar-footer"><img src="../../static/images/nepal-flag.svg" alt="Nepal flag" class="sidebar-flag"><span class="sidebar-motto">Your identity remains protected</span></div>
+    </aside>
+    <div class="main-content">
+      <header class="top-bar"><div class="page-headline"><h1 class="page-title">Citizen Voter Profile</h1><span class="page-subtext">Official electoral register record</span></div><a href="./dashboard.html" class="btn btn-outline btn-sm">Dashboard</a></header>
+      <main class="content-body">
+        <section class="profile-banner">
+          <div class="profile-avatar"><img src="../../static/images/candidates/voter-avatar.svg" alt="Voter avatar"></div>
+          <div><h2 data-profile-name>Loading...</h2><p>Voter account</p></div>
+        </section>
+        <div class="portal-status" data-profile-status role="status" aria-live="polite">Loading account status...</div>
+        <section class="dashboard-card">
+          <h2>Personal and constituency information</h2>
+          <div class="profile-grid">
+            <div><span>Full legal name</span><strong data-profile-full-name>Loading...</strong></div>
+            <div><span>Email address</span><strong data-profile-email>Loading...</strong></div>
+            <div><span>Date of birth</span><strong data-profile-dob>Loading...</strong></div>
+            <div><span>Mobile number</span><strong data-profile-mobile>Not provided</strong></div>
+            <div><span>Province</span><strong data-profile-province>Not provided</strong></div>
+            <div><span>District</span><strong data-profile-district>Not provided</strong></div>
+            <div><span>Municipality</span><strong data-profile-municipality>Not provided</strong></div>
+            <div><span>Ward</span><strong data-profile-ward>Not provided</strong></div>
+            <div><span>Citizenship verification</span><strong data-profile-citizenship>Loading...</strong></div>
+            <div><span>Account verification</span><strong data-profile-verification>Loading...</strong></div>
+          </div>
+          <p class="auth-help">Citizenship numbers and document files are not displayed on this page.</p>
+        </section>
+        <section class="dashboard-card" style="margin-top: 1.5rem;">
+          <h2>Citizenship document history</h2>
+          <div class="verification-list" data-profile-documents>Loading document status...</div>
+          <a class="btn btn-primary" href="./dashboard.html">Upload or update document</a>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../../static/js/supabase-config.js"></script><script src="../../static/js/supabase-client.js"></script><script src="../../static/js/supabase-auth.js"></script><script src="../../static/js/voter-profile.js"></script>
+</body>
+</html>

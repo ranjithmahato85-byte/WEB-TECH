@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage elections | Nepal Online Voting</title>
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+</head>
+<body class="auth-body">
+  <main class="portal-shell">
+    <header class="portal-header">
+      <div><p class="auth-help">Nepal Online Voting</p><h1>Manage elections</h1></div>
+      <a class="portal-action" href="dashboard.html">Back to portal</a>
+    </header>
+    <div class="auth-message" data-election-admin-message role="alert" aria-live="polite"></div>
+    <section class="portal-panel">
+      <h2>Create draft election</h2>
+      <form class="auth-form" data-election-form>
+        <div class="auth-field"><label for="title">Title</label><input id="title" name="title" required></div>
+        <div class="auth-field"><label for="description">Description</label><textarea id="description" name="description" class="verification-note"></textarea></div>
+        <div class="auth-field"><label for="electionType">Election type</label><input id="electionType" name="electionType" placeholder="Federal, Provincial, or Local" required></div>
+        <div class="auth-field"><label for="location">Location</label><input id="location" name="location" required></div>
+        <div class="auth-field"><label for="startAt">Start time</label><input id="startAt" name="startAt" type="datetime-local" required></div>
+        <div class="auth-field"><label for="endAt">End time</label><input id="endAt" name="endAt" type="datetime-local" required></div>
+        <button class="portal-action" type="submit">Create draft</button>
+      </form>
+    </section>
+    <section class="portal-panel" style="margin-top: 20px;">
+      <h2>Election status</h2>
+      <div class="verification-list" data-election-admin-list>Loading elections...</div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../static/js/supabase-config.js"></script>
+  <script src="../../static/js/supabase-client.js"></script>
+  <script src="../../static/js/supabase-auth.js"></script>
+  <script src="../../static/js/admin-elections.js"></script>
+</body>
+</html>

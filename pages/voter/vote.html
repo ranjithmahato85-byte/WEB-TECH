@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review ballot | Nepal Online Voting</title>
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+  <link rel="stylesheet" href="../../static/css/supabase-public.css">
+</head>
+<body class="auth-body">
+  <main class="portal-shell">
+    <header class="portal-header">
+      <div>
+        <p class="auth-help">Nepal Online Voting</p>
+        <h1>Review ballot</h1>
+      </div>
+      <a class="portal-action" href="elections.html">Back to elections</a>
+    </header>
+    <section class="portal-panel">
+      <h2 data-election-title>Loading election...</h2>
+      <p class="auth-help">Select one approved candidate. Your choice will be recorded without storing your voter ID with the ballot.</p>
+      <div class="auth-message" data-vote-message role="alert" aria-live="polite"></div>
+      <div data-ballot>Loading approved candidates...</div>
+      <button class="portal-action" type="button" data-cast-vote>Confirm and cast vote</button>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../static/js/supabase-config.js"></script>
+  <script src="../../static/js/supabase-client.js"></script>
+  <script src="../../static/js/supabase-auth.js"></script>
+  <script src="../../static/js/voter-voting.js"></script>
+</body>
+</html>

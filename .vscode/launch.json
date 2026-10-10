@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+      "name": "▶ Run Nepal Voting System",
+      "type": "php",
+      "request": "launch",
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["-S", "localhost:8000", "router.php"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Lint PHP Front Controller",
+      "type": "php",
+      "request": "launch",
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["-l", "${workspaceFolder}/index.php"],
+      "console": "integratedTerminal"
+    }
+  ]
+}

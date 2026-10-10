@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin portal | Nepal Online Voting</title>
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+</head>
+<body class="auth-body" data-required-role="admin">
+  <main class="portal-shell">
+    <header class="portal-header">
+      <div>
+        <p class="auth-help">Nepal Online Voting</p>
+        <h1>Admin portal</h1>
+      </div>
+      <button class="portal-action" type="button" data-sign-out>Sign out</button>
+    </header>
+    <section class="portal-panel" aria-labelledby="welcome-title">
+      <h2 id="welcome-title">Welcome, <span data-profile-name>administrator</span></h2>
+      <div class="portal-status is-approved" data-profile-status role="status" aria-live="polite">Loading administrator status...</div>
+      <div class="verification-toolbar">
+        <h3>Voter verification</h3>
+        <a class="portal-action" href="#voter-applications">Review applications</a>
+      </div>
+      <p><a class="portal-action" href="elections.html">Manage elections</a></p>
+      <p><a class="portal-action" href="candidates.html">Manage candidates</a></p>
+      <p><a class="portal-action" href="audit.html">View audit log</a></p>
+      <div id="voter-applications" class="verification-list" data-voter-queue>
+        Loading voter applications...
+      </div>
+      <div class="verification-toolbar">
+        <h3>Citizenship documents</h3>
+      </div>
+      <div class="verification-list" data-document-queue>
+        Loading citizenship documents...
+      </div>
+      <div class="auth-message" data-admin-message role="alert" aria-live="polite"></div>
+      <template data-voter-row-template>
+        <article class="verification-item">
+          <h3 data-voter-name></h3>
+          <p class="verification-meta"><span data-voter-location></span> | <span data-voter-citizenship></span> | <span data-voter-status></span></p>
+          <label class="auth-help" for="verification-note">Review note</label>
+          <textarea class="verification-note" id="verification-note" data-voter-note placeholder="Explain the decision for the audit record."></textarea>
+          <div class="verification-controls" data-voter-controls>
+            <button type="button" data-status="approved">Approve voter</button>
+            <button type="button" data-status="rejected">Reject application</button>
+            <button type="button" data-status="suspended">Suspend account</button>
+          </div>
+        </article>
+      </template>
+      <template data-document-row-template>
+        <article class="verification-item">
+          <h3 data-document-voter></h3>
+          <p class="verification-meta">Citizenship document pending review</p>
+          <button class="portal-action" type="button" data-document-preview>Open private preview</button>
+          <label class="auth-help" for="document-note">Review note</label>
+          <textarea class="verification-note" id="document-note" data-document-note placeholder="Explain the document decision for the audit record."></textarea>
+          <div class="verification-controls" data-document-controls>
+            <button type="button" data-status="approved">Approve document</button>
+            <button type="button" data-status="rejected">Reject document</button>
+          </div>
+        </article>
+      </template>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../static/js/supabase-config.js"></script>
+  <script src="../../static/js/supabase-client.js"></script>
+  <script src="../../static/js/supabase-auth.js"></script>
+  <script src="../../static/js/portal-page.js"></script>
+  <script src="../../static/js/admin-verification.js"></script>
+</body>
+</html>

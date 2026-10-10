@@ -1,0 +1,89 @@
+:root {
+  --public-navy: #071a3d;
+  --public-blue: #003893;
+  --public-red: #c8202f;
+  --public-ink: #172033;
+  --public-muted: #5f6b7a;
+  --public-line: #d9e0ea;
+  --public-bg: #f4f7fb;
+  --public-card: #fff;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--public-ink);
+  background: var(--public-bg);
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+a { color: var(--public-blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.public-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 72px;
+  padding: 14px max(20px, calc((100% - 1180px) / 2));
+  color: #fff;
+  background: var(--public-navy);
+}
+.public-brand { color: #fff; font-weight: 700; }
+.public-links { display: flex; flex-wrap: wrap; gap: 16px; }
+.public-links a { color: #dbe7fb; font-size: .92rem; }
+.public-shell { width: min(100% - 32px, 1180px); margin: 0 auto; padding: 44px 0 64px; }
+.public-hero {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 34px;
+  min-height: 360px;
+  color: #fff;
+  padding: clamp(28px, 6vw, 64px);
+  border-radius: 14px;
+  background: linear-gradient(90deg, rgb(7 26 61 / .96), rgb(7 26 61 / .55)), url('../images/nepal-hero.jpg') center/cover;
+}
+.public-hero h1 { max-width: 10ch; margin: 0 0 16px; font-size: clamp(2.4rem, 6vw, 5rem); line-height: 1.02; letter-spacing: -.04em; }
+.public-hero p { max-width: 44ch; color: #d6e0ef; }
+.public-section-title { margin: 44px 0 18px; color: var(--public-navy); font-size: clamp(1.7rem, 4vw, 2.5rem); letter-spacing: -.03em; }
+.public-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.public-card { overflow: hidden; background: var(--public-card); border: 1px solid var(--public-line); border-radius: 12px; }
+.public-card-image { width: 100%; height: 150px; object-fit: cover; }
+.public-card-body { padding: 18px; }
+.public-card h2, .public-card h3 { margin: 0 0 8px; color: var(--public-navy); font-size: 1.18rem; }
+.public-card p { margin: 0 0 14px; color: var(--public-muted); font-size: .92rem; }
+.public-meta { color: var(--public-muted); font-size: .84rem; }
+.public-button { display: inline-block; padding: 9px 13px; color: #fff; background: var(--public-blue); border-radius: 8px; font-weight: 700; }
+.public-button:hover { background: #002d77; text-decoration: none; }
+.public-toolbar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+.public-input { min-height: 42px; padding: 9px 11px; border: 1px solid #b8c4d3; border-radius: 8px; font: inherit; }
+.public-message { padding: 15px; color: var(--public-muted); background: #fff; border: 1px solid var(--public-line); border-radius: 10px; }
+.result-row { padding: 14px 0; border-bottom: 1px solid var(--public-line); }
+.ballot-option {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 16px;
+  margin-bottom: 10px;
+  border: 1px solid var(--public-line);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+}
+.ballot-option:has(input:checked) {
+  border-color: var(--public-blue);
+  outline: 3px solid rgb(0 56 147 / .14);
+}
+.ballot-option input { margin-top: 4px; }
+.ballot-option strong { color: var(--public-navy); }
+.ballot-option small { color: var(--public-muted); }
+.result-row strong { color: var(--public-navy); }
+@media (max-width: 760px) {
+  .public-nav { align-items: flex-start; flex-direction: column; }
+  .public-hero { display: block; min-height: 0; }
+  .public-grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}

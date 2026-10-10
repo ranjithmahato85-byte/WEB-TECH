@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voting status | Nepal Online Voting</title>
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+</head>
+<body class="auth-body">
+  <main class="portal-shell">
+    <header class="portal-header">
+      <div>
+        <p class="auth-help">Nepal Online Voting</p>
+        <h1>Voting status</h1>
+      </div>
+      <a class="portal-action" href="dashboard.html">Back to portal</a>
+    </header>
+    <section class="portal-panel">
+      <p class="auth-help">This page confirms participation only. It never shows which candidate you selected.</p>
+      <div class="auth-message" data-status-message role="alert" aria-live="polite"></div>
+      <div class="verification-list" data-participation-list>Loading participation records...</div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../static/js/supabase-config.js"></script>
+  <script src="../../static/js/supabase-client.js"></script>
+  <script src="../../static/js/supabase-auth.js"></script>
+  <script src="../../static/js/voter-status.js"></script>
+</body>
+</html>

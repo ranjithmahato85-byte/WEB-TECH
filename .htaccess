@@ -1,0 +1,28 @@
+# =============================================================================
+# Nepal Online Voting System - Apache configuration (XAMPP)
+# =============================================================================
+Options -Indexes
+DirectoryIndex index.php
+
+# Never serve the SQLite database or application internals over HTTP
+<FilesMatch "\.(db|sqlite|sqlite3|db-wal|db-shm)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Serve real files and directories (CSS, JS, images, uploads) directly
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Everything else is handled by the PHP front controller
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+# Basic hardening
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>

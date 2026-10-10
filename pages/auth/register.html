@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register | Nepal Online Voting</title>
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+</head>
+<body class="auth-body">
+  <main class="auth-shell">
+    <section class="auth-intro">
+      <a class="auth-mark" href="../../">
+        <img src="../../static/images/nepal-flag.svg" alt="">
+        Nepal Online Voting
+      </a>
+      <div>
+        <h1>Register once. Verify before voting.</h1>
+        <p>Your citizenship number identifies one voter account. An administrator must approve it before you can cast a ballot.</p>
+      </div>
+      <p class="auth-note">Use your own identity details. Never share your password or ask another person to vote for you.</p>
+    </section>
+
+    <section class="auth-panel" aria-labelledby="register-title">
+      <div class="auth-form-wrap">
+        <h2 id="register-title">Create voter account</h2>
+        <p>Registration does not grant voting access immediately.</p>
+        <form class="auth-form" data-auth-form="register">
+          <div class="auth-message" data-auth-message role="alert" aria-live="polite"></div>
+          <div class="auth-field">
+            <label for="fullName">Full name</label>
+            <input id="fullName" name="fullName" type="text" autocomplete="name" required>
+          </div>
+          <div class="auth-field">
+            <label for="citizenshipNumber">Citizenship number</label>
+            <input id="citizenshipNumber" name="citizenshipNumber" type="text" autocomplete="off" required>
+          </div>
+          <div class="auth-field">
+            <label for="dateOfBirth">Date of birth</label>
+            <input id="dateOfBirth" name="dateOfBirth" type="date" autocomplete="bday" required>
+          </div>
+          <div class="auth-field">
+            <label for="province">Province</label>
+            <input id="province" name="province" type="text" required>
+          </div>
+          <div class="auth-field">
+            <label for="district">District</label>
+            <input id="district" name="district" type="text" required>
+          </div>
+          <div class="auth-field">
+            <label for="municipality">Municipality</label>
+            <input id="municipality" name="municipality" type="text" required>
+          </div>
+          <div class="auth-field">
+            <label for="ward">Ward number</label>
+            <input id="ward" name="ward" type="text" inputmode="numeric" required>
+          </div>
+          <div class="auth-field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="auth-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+          </div>
+          <div class="auth-field">
+            <label for="confirmPassword">Confirm password</label>
+            <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" required>
+          </div>
+          <button class="auth-submit" type="submit">Submit registration</button>
+          <p class="auth-help">After registration, your account remains pending until an administrator verifies your identity and citizenship details.</p>
+          <p class="auth-links">Already registered? <a href="login.html">Sign in</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../static/js/supabase-config.js"></script>
+  <script src="../../static/js/supabase-client.js"></script>
+  <script src="../../static/js/supabase-auth.js"></script>
+  <script src="../../static/js/auth-pages.js"></script>
+</body>
+</html>

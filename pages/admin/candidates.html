@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manage candidates | Nepal Online Voting</title>
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+</head>
+<body class="auth-body">
+  <main class="portal-shell">
+    <header class="portal-header">
+      <div><p class="auth-help">Nepal Online Voting</p><h1>Manage candidates</h1></div>
+      <a class="portal-action" href="dashboard.html">Back to portal</a>
+    </header>
+    <div class="auth-message" data-candidate-message role="alert" aria-live="polite"></div>
+    <section class="portal-panel">
+      <h2>Create candidate identity</h2>
+      <form class="auth-form" data-candidate-form>
+        <div class="auth-field"><label for="fullName">Full name</label><input id="fullName" name="fullName" required></div>
+        <div class="auth-field"><label for="citizenshipNumber">Citizenship number</label><input id="citizenshipNumber" name="citizenshipNumber" required></div>
+        <div class="auth-field"><label for="biography">Biography</label><textarea id="biography" name="biography" class="verification-note"></textarea></div>
+        <button class="portal-action" type="submit">Create candidate identity</button>
+      </form>
+    </section>
+    <section class="portal-panel" style="margin-top: 20px;">
+      <h2>Create nomination</h2>
+      <form class="auth-form" data-nomination-form>
+        <div class="auth-field"><label for="electionId">Election</label><select id="electionId" name="electionId" class="public-input" required><option value="">Select election</option></select></div>
+        <div class="auth-field"><label for="candidateId">Candidate</label><select id="candidateId" name="candidateId" class="public-input" required><option value="">Select candidate</option></select></div>
+        <div class="auth-field"><label for="party">Party</label><input id="party" name="party" required></div>
+        <div class="auth-field"><label for="position">Position</label><input id="position" name="position" required></div>
+        <div class="auth-field"><label for="symbolName">Symbol name</label><input id="symbolName" name="symbolName" required></div>
+        <button class="portal-action" type="submit">Submit nomination</button>
+      </form>
+    </section>
+    <section class="portal-panel" style="margin-top: 20px;">
+      <h2>Candidate identities</h2><div class="verification-list" data-candidate-list>Loading candidates...</div>
+      <h2>Nomination review</h2><div class="verification-list" data-nomination-list>Loading nominations...</div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../static/js/supabase-config.js"></script>
+  <script src="../../static/js/supabase-client.js"></script>
+  <script src="../../static/js/supabase-auth.js"></script>
+  <script src="../../static/js/admin-candidates.js"></script>
+</body>
+</html>

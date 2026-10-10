@@ -1,0 +1,948 @@
+/* ==========================================================================
+   Nepal Online Voting System - Dashboard, Voting Flow & Admin Styles
+   Strictly adheres to dark navy sidebar, civic cards, and clean voting flows
+   ========================================================================== */
+
+/* Main Layout with Sidebar */
+.dashboard-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* ==========================================================================
+   DARK NAVY SIDEBAR (FROM REFERENCE SCREENSHOT)
+   ========================================================================== */
+
+.sidebar {
+  width: 260px;
+  background-color: #0f172a; /* Dark Navy */
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid #1e293b;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+/* User Profile Badge at Top of Sidebar */
+.sidebar-user {
+  padding: 1.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #1e293b;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.sidebar-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: relative;
+  background: #334155;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid #3b82f6;
+}
+
+.sidebar-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.sidebar-user-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user-role {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  color: #94a3b8;
+}
+
+/* Sidebar Nav Menu */
+.sidebar-nav {
+  padding: 1rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.sidebar-link svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  color: #64748b;
+  transition: color 0.15s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #1e293b;
+  color: #ffffff;
+}
+
+.sidebar-link:hover svg {
+  color: #38bdf8;
+}
+
+.sidebar-link.active {
+  background-color: #2563eb; /* Primary Vibrant Blue as in reference */
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.sidebar-link.active svg {
+  color: #ffffff;
+}
+
+.sidebar-badge {
+  margin-left: auto;
+  background: #334155;
+  color: #f1f5f9;
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 9999px;
+}
+
+/* Sidebar Footer (Nepal Mountain & Flag) */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 1.25rem 1rem;
+  border-top: 1px solid #1e293b;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.3) 100%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-flag {
+  width: 24px;
+  height: 30px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.sidebar-motto {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   MAIN DASHBOARD CONTENT AREA
+   ========================================================================== */
+
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevents flex children from overflowing */
+  overflow-y: auto;
+}
+
+/* Top App Bar */
+.top-bar {
+  height: 70px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.page-headline {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.page-subtext {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.top-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.content-body {
+  padding: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+  border-radius: var(--radius-xl);
+  color: #ffffff;
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.welcome-banner::after {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; width: 40%;
+  background: url('/static/images/nepal-hero.svg') right center no-repeat;
+  background-size: cover;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.welcome-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.welcome-subtitle {
+  font-size: 0.88rem;
+  color: #bfdbfe;
+  max-width: 600px;
+}
+
+/* Filter Tabs (e.g. All, Active, Upcoming, Completed) */
+.filter-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.tab-btn {
+  padding: 7px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tab-btn:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.tab-btn.active {
+  background-color: var(--nepal-crimson);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   VOTING PAGE & BALLOT INTERFACE (SEPARATE DEDICATED VIEW)
+   ========================================================================== */
+
+.voting-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+.voting-header-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1.75rem;
+  margin-bottom: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.voting-election-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.voting-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.85rem;
+}
+
+.voting-meta-col span {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.voting-meta-col strong {
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+/* Candidate Radio Selection Group */
+.ballot-selection-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.ballot-candidate-card {
+  background: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.ballot-candidate-card:hover {
+  border-color: #93c5fd;
+  background-color: #f8fafc;
+}
+
+.ballot-candidate-card.selected {
+  border-color: var(--primary-blue);
+  background-color: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.ballot-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.custom-radio {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.ballot-candidate-card.selected .custom-radio {
+  border-color: var(--primary-blue);
+  background-color: var(--primary-blue);
+}
+
+.custom-radio-inner {
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: none;
+}
+
+.ballot-candidate-card.selected .custom-radio-inner {
+  display: block;
+}
+
+.ballot-candidate-img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  flex-shrink: 0;
+  background: #f1f5f9;
+}
+
+.ballot-candidate-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.ballot-candidate-details h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.ballot-candidate-details p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.ballot-symbol-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.ballot-symbol-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.ballot-symbol-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+/* ==========================================================================
+   VOTE CONFIRMATION SCREEN
+   ========================================================================== */
+
+.confirm-card {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.confirm-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.confirm-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.confirm-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.selection-recap-box {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.recap-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #ffffff;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.recap-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.recap-details h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.recap-details .recap-party {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+}
+
+.warning-callout {
+  background-color: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-left: 4px solid #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  font-size: 0.88rem;
+  color: #92400e;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.warning-callout svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.confirm-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   VOTE SUCCESS SCREEN (EXACTLY LIKE REFERENCE SCREENSHOT)
+   ========================================================================== */
+
+.success-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  text-align: center;
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-color);
+  padding: 3.5rem 2.5rem;
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Success Checkmark Ring */
+.success-icon-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 1.5rem;
+}
+
+.success-circle {
+  width: 88px;
+  height: 88px;
+  background-color: #10b981;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+}
+
+.success-circle svg {
+  width: 44px;
+  height: 44px;
+  stroke-width: 3;
+}
+
+/* Confetti Dots Decoration */
+.confetti-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.c-1 { top: -4px; left: 10px; background: #ef4444; }
+.c-2 { top: 12px; right: -8px; background: #3b82f6; }
+.c-3 { bottom: 0; left: -10px; background: #f59e0b; }
+.c-4 { bottom: -6px; right: 12px; background: #8b5cf6; }
+.c-5 { top: -12px; right: 28px; background: #10b981; }
+
+.success-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.success-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Confirmation Box (solid emerald) */
+.confirmation-box {
+  background-color: #047857;
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.conf-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #a7f3d0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.conf-number {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  font-family: monospace, sans-serif;
+}
+
+.conf-note {
+  font-size: 0.75rem;
+  color: #d1fae5;
+  margin-top: 4px;
+}
+
+.secrecy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 9999px;
+}
+
+.success-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* ==========================================================================
+   RESULTS & DATA VISUALIZATION
+   ========================================================================== */
+
+.results-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.result-metric-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.result-metric-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-metric-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.result-metric-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.results-content-split {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+}
+
+.table-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.custom-table th {
+  background-color: #f8fafc;
+  padding: 12px 16px;
+  font-weight: 700;
+  color: #475569;
+  border-bottom: 1px solid var(--border-color);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.custom-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+  border-radius: 9999px;
+}
+
+/* Donut Chart representation */
+.donut-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.donut-svg-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 1rem 0;
+}
+
+.donut-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.donut-center-total {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.donut-center-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.donut-legend {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.legend-color-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+/* ==========================================================================
+   ADMIN MANAGEMENT UI
+   ========================================================================== */
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-backdrop.show {
+  display: flex;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+}
+
+.modal-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  background-color: #f8fafc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .results-content-split {
+    grid-template-columns: 1fr;
+  }
+  .results-summary-cards {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-wrapper {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+  .sidebar-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0.5rem;
+  }
+  .sidebar-link span, .sidebar-motto {
+    display: none;
+  }
+  .content-body {
+    padding: 1rem;
+  }
+  .voting-meta-grid {
+    grid-template-columns: 1fr;
+  }
+  .confirm-actions {
+    flex-direction: column-reverse;
+  }
+  .confirm-actions .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a90e2" />
+      <stop offset="45%" stop-color="#90c8f8" />
+      <stop offset="75%" stop-color="#e2f0fc" />
+      <stop offset="100%" stop-color="#fdfbf7" />
+    </linearGradient>
+    <linearGradient id="snowGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="70%" stop-color="#d4eaf7" />
+      <stop offset="100%" stop-color="#a8cde5" />
+    </linearGradient>
+    <linearGradient id="snowGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f5faff" />
+      <stop offset="60%" stop-color="#bcdcf2" />
+      <stop offset="100%" stop-color="#8bb7d8" />
+    </linearGradient>
+    <linearGradient id="hillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2d527c" />
+      <stop offset="100%" stop-color="#142c4a" />
+    </linearGradient>
+    <linearGradient id="templeRoof" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c67d32" />
+      <stop offset="50%" stop-color="#e89e4f" />
+      <stop offset="100%" stop-color="#9a5b1a" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1200" height="600" fill="url(#skyGrad)"/>
+
+  <!-- Distant Clouds & Sun Glow -->
+  <circle cx="750" cy="180" r="160" fill="#fff7e6" opacity="0.4" filter="blur(30px)"/>
+  <ellipse cx="250" cy="120" rx="140" ry="25" fill="#ffffff" opacity="0.35"/>
+  <ellipse cx="880" cy="140" rx="190" ry="30" fill="#ffffff" opacity="0.4"/>
+
+  <!-- Far Himalayan Peaks (Everest / Lhotse range) -->
+  <polygon points="120,380 280,140 440,380" fill="url(#snowGrad2)" opacity="0.85"/>
+  <polygon points="280,140 330,220 280,380 240,240" fill="#ffffff" opacity="0.95"/>
+  
+  <polygon points="350,420 540,110 730,420" fill="url(#snowGrad1)"/>
+  <polygon points="540,110 610,210 560,420 510,230" fill="#ffffff"/>
+  <!-- Ridges & Shadows -->
+  <polygon points="540,110 590,260 540,420" fill="#7ba3c4" opacity="0.5"/>
+
+  <!-- Iconic Fishtail Peak (Machapuchare) -->
+  <polygon points="680,450 830,130 870,180 910,130 1060,450" fill="url(#snowGrad1)"/>
+  <polygon points="830,130 870,180 870,450 810,260" fill="#ffffff"/>
+  <polygon points="870,180 910,130 960,250 870,450" fill="#88b2d4" opacity="0.65"/>
+
+  <!-- Mid-range Mountain Ridge -->
+  <polygon points="0,480 180,310 420,490 650,330 920,510 1200,320 1200,600 0,600" fill="url(#hillGrad)" opacity="0.85"/>
+
+  <!-- Foreground Foothills -->
+  <path d="M -50,600 Q 200,430 500,530 T 1250,480 L 1250,600 Z" fill="#0f2138"/>
+
+  <!-- Traditional Pagoda Temple (Nepal Heritage Architecture) -->
+  <g transform="translate(680, 290) scale(0.95)">
+    <!-- Base Platform -->
+    <rect x="70" y="240" width="160" height="25" fill="#8b5738" rx="2"/>
+    <rect x="85" y="220" width="130" height="20" fill="#6a3e22" rx="2"/>
+    
+    <!-- Level 1 Body & Roof -->
+    <rect x="100" y="170" width="100" height="50" fill="#a44226"/>
+    <!-- Pillars -->
+    <rect x="110" y="175" width="8" height="45" fill="#e09f58"/>
+    <rect x="146" y="175" width="8" height="45" fill="#e09f58"/>
+    <rect x="182" y="175" width="8" height="45" fill="#e09f58"/>
+    <!-- Level 1 Roof (Curved Pagoda overhang) -->
+    <path d="M 60,170 Q 150,150 240,170 L 220,145 Q 150,135 80,145 Z" fill="url(#templeRoof)"/>
+    
+    <!-- Level 2 Body & Roof -->
+    <rect x="115" y="115" width="70" height="30" fill="#8f371e"/>
+    <path d="M 80,115 Q 150,100 220,115 L 205,95 Q 150,85 95,95 Z" fill="url(#templeRoof)"/>
+
+    <!-- Level 3 Top Tier & Gajur (Golden Pinnacle) -->
+    <rect x="128" y="75" width="44" height="20" fill="#752c16"/>
+    <path d="M 105,75 Q 150,62 195,75 L 180,58 Q 150,50 120,58 Z" fill="url(#templeRoof)"/>
+    <!-- Golden Pinnacle (Gajur) -->
+    <polygon points="150,22 144,52 156,52" fill="#ffd700"/>
+    <circle cx="150" cy="20" r="5" fill="#ffe066"/>
+
+    <!-- Fluttering Nepal Flag on Pagoda mast -->
+    <g transform="translate(245, 120) scale(0.65)">
+      <line x1="0" y1="0" x2="0" y2="120" stroke="#444" stroke-width="3"/>
+      <!-- Nepal Flag -->
+      <polygon points="0,10 60,45 25,45 68,90 0,90" fill="#003893" stroke="#003893" stroke-width="2"/>
+      <polygon points="3,15 54,44 21,44 61,86 3,86" fill="#DC143C"/>
+      <circle cx="18" cy="32" r="6" fill="#ffffff"/>
+      <circle cx="20" cy="68" r="8" fill="#ffffff"/>
+    </g>
+  </g>
+</svg>

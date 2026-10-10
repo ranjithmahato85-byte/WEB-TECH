@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in | Nepal Online Voting</title>
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+</head>
+<body class="auth-body">
+  <main class="auth-shell">
+    <section class="auth-intro">
+      <a class="auth-mark" href="../../">
+        <img src="../../static/images/nepal-flag.svg" alt="">
+        Nepal Online Voting
+      </a>
+      <div>
+        <h1>Your vote belongs to you.</h1>
+        <p>Sign in to access your verified voter account. Every election permits one vote per verified voter.</p>
+      </div>
+      <p class="auth-note">New accounts stay pending until an Election Commission administrator reviews the submitted identity details.</p>
+    </section>
+
+    <section class="auth-panel" aria-labelledby="login-title">
+      <div class="auth-form-wrap">
+        <h2 id="login-title">Sign in</h2>
+        <p>Use the email connected to your Supabase voter account.</p>
+        <form class="auth-form" data-auth-form="login">
+          <div class="auth-message" data-auth-message role="alert" aria-live="polite"></div>
+          <div class="auth-field">
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="auth-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+          </div>
+          <button class="auth-submit" type="submit">Sign in</button>
+          <p class="auth-links">Need an account? <a href="register.html">Register as a voter</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../static/js/supabase-config.js"></script>
+  <script src="../../static/js/supabase-client.js"></script>
+  <script src="../../static/js/supabase-auth.js"></script>
+  <script src="../../static/js/auth-pages.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Elections - Nepal Online Voting System</title>
+  <link rel="stylesheet" href="../../static/css/style.css">
+  <link rel="stylesheet" href="../../static/css/dashboard.css">
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/images/nepal-flag.svg">
+</head>
+<body data-required-role="admin">
+  <div class="dashboard-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-user"><div class="sidebar-avatar"><img src="../../static/images/candidates/voter-avatar.svg" alt="Administrator avatar"></div><div class="sidebar-user-info"><span class="sidebar-user-name">Administrator</span><div class="sidebar-user-role"><span>Election management</span></div></div></div>
+      <nav class="sidebar-nav" aria-label="Admin navigation"><a href="./dashboard.html" class="sidebar-link"><span>Dashboard</span></a><a href="./elections.html" class="sidebar-link active"><span>Elections</span></a><a href="./candidates.html" class="sidebar-link"><span>Candidates</span></a><a href="./audit.html" class="sidebar-link"><span>Audit Log</span></a><a href="../index.html" class="sidebar-link"><span>Public Site</span></a></nav>
+      <div class="sidebar-footer"><img src="../../static/images/nepal-flag.svg" alt="Nepal flag" class="sidebar-flag"><span class="sidebar-motto">Election lifecycle controls</span></div>
+    </aside>
+    <div class="main-content">
+      <header class="top-bar"><div class="page-headline"><h1 class="page-title">Manage Elections</h1><span class="page-subtext">Create and control election lifecycles</span></div><a href="./dashboard.html" class="btn btn-outline btn-sm">Dashboard</a></header>
+      <main class="content-body">
+        <div class="auth-message" data-election-admin-message role="alert" aria-live="polite"></div>
+        <section class="dashboard-card">
+          <h2>Create draft election</h2>
+          <form class="admin-form" data-election-form>
+            <div class="form-group"><label class="form-label" for="title">Title</label><input id="title" name="title" class="form-control" required></div>
+            <div class="form-group"><label class="form-label" for="description">Description</label><textarea id="description" name="description" class="verification-note"></textarea></div>
+            <div class="admin-form-grid">
+              <div class="form-group"><label class="form-label" for="electionType">Election type</label><input id="electionType" name="electionType" class="form-control" placeholder="Federal, Provincial, or Local" required></div>
+              <div class="form-group"><label class="form-label" for="location">Location</label><input id="location" name="location" class="form-control" required></div>
+              <div class="form-group"><label class="form-label" for="startAt">Start time</label><input id="startAt" name="startAt" type="datetime-local" class="form-control" required></div>
+              <div class="form-group"><label class="form-label" for="endAt">End time</label><input id="endAt" name="endAt" type="datetime-local" class="form-control" required></div>
+            </div>
+            <button class="btn btn-primary" type="submit">Create draft</button>
+          </form>
+        </section>
+        <section class="dashboard-card" style="margin-top: 1.5rem;"><h2>Election status</h2><div class="verification-list" data-election-admin-list>Loading elections...</div></section>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../../static/js/supabase-config.js"></script><script src="../../static/js/supabase-client.js"></script><script src="../../static/js/supabase-auth.js"></script><script src="../../static/js/admin-elections.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Candidates - Nepal Online Voting System</title>
+  <link rel="stylesheet" href="../../static/css/style.css">
+  <link rel="stylesheet" href="../../static/css/dashboard.css">
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/images/nepal-flag.svg">
+</head>
+<body data-required-role="admin">
+  <div class="dashboard-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-user"><div class="sidebar-avatar"><img src="../../static/images/candidates/voter-avatar.svg" alt="Administrator avatar"></div><div class="sidebar-user-info"><span class="sidebar-user-name">Administrator</span><div class="sidebar-user-role"><span>Candidate management</span></div></div></div>
+      <nav class="sidebar-nav" aria-label="Admin navigation"><a href="./dashboard.html" class="sidebar-link"><span>Dashboard</span></a><a href="./elections.html" class="sidebar-link"><span>Elections</span></a><a href="./candidates.html" class="sidebar-link active"><span>Candidates</span></a><a href="./audit.html" class="sidebar-link"><span>Audit Log</span></a><a href="../index.html" class="sidebar-link"><span>Public Site</span></a></nav>
+      <div class="sidebar-footer"><img src="../../static/images/nepal-flag.svg" alt="Nepal flag" class="sidebar-flag"><span class="sidebar-motto">Candidate identity controls</span></div>
+    </aside>
+    <div class="main-content">
+      <header class="top-bar"><div class="page-headline"><h1 class="page-title">Manage Candidates</h1><span class="page-subtext">Candidate identities and nominations</span></div><a href="./dashboard.html" class="btn btn-outline btn-sm">Dashboard</a></header>
+      <main class="content-body">
+        <div class="auth-message" data-candidate-message role="alert" aria-live="polite"></div>
+        <section class="dashboard-card">
+          <h2>Create candidate identity</h2>
+          <form class="admin-form" data-candidate-form>
+            <div class="admin-form-grid">
+              <div class="form-group"><label class="form-label" for="fullName">Full name</label><input id="fullName" name="fullName" class="form-control" required></div>
+              <div class="form-group"><label class="form-label" for="citizenshipNumber">Citizenship number</label><input id="citizenshipNumber" name="citizenshipNumber" class="form-control" required></div>
+            </div>
+            <div class="form-group"><label class="form-label" for="biography">Biography</label><textarea id="biography" name="biography" class="verification-note"></textarea></div>
+            <button class="btn btn-primary" type="submit">Create candidate identity</button>
+          </form>
+        </section>
+        <section class="dashboard-card" style="margin-top: 1.5rem;">
+          <h2>Create nomination</h2>
+          <form class="admin-form" data-nomination-form>
+            <div class="admin-form-grid">
+              <div class="form-group"><label class="form-label" for="electionId">Election</label><select id="electionId" name="electionId" class="form-control" required><option value="">Select election</option></select></div>
+              <div class="form-group"><label class="form-label" for="candidateId">Candidate</label><select id="candidateId" name="candidateId" class="form-control" required><option value="">Select candidate</option></select></div>
+              <div class="form-group"><label class="form-label" for="party">Party</label><input id="party" name="party" class="form-control" required></div>
+              <div class="form-group"><label class="form-label" for="position">Position</label><input id="position" name="position" class="form-control" required></div>
+              <div class="form-group"><label class="form-label" for="symbolName">Symbol name</label><input id="symbolName" name="symbolName" class="form-control" required></div>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit nomination</button>
+          </form>
+        </section>
+        <section class="dashboard-card" style="margin-top: 1.5rem;"><h2>Candidate identities</h2><div class="verification-list" data-candidate-list>Loading candidates...</div><h2 style="margin-top: 2rem;">Nomination review</h2><div class="verification-list" data-nomination-list>Loading nominations...</div></section>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../../static/js/supabase-config.js"></script><script src="../../static/js/supabase-client.js"></script><script src="../../static/js/supabase-auth.js"></script><script src="../../static/js/admin-candidates.js"></script>
+</body>
+</html>

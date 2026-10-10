@@ -3,3 +3,4 @@ node_modules/
 static/js/supabase-config.js
 instance/*.db
 scratch/
+static/uploads/

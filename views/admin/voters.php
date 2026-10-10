@@ -127,6 +127,7 @@ $section_subtitle = "Electoral roll verification and status control";
                             Update Legal Details
                           </h4>
                           <form action="<?= url_for('admin_update_voter_details', ['voter_id' => $voter['id']]) ?>" method="POST">
+                            <?= csrf_field() ?>
                             <div class="form-group" style="margin-bottom: 8px;">
                               <label class="form-label" style="font-size: 0.75rem; margin-bottom: 2px;">Full Legal Name</label>
                               <input type="text" name="full_name" class="form-control" style="font-size: 0.82rem; padding: 4px 8px;" value="<?= htmlspecialchars($voter['full_name']) ?>" required>
@@ -163,6 +164,7 @@ $section_subtitle = "Electoral roll verification and status control";
                             If document name does not match, upload a corrected certificate scan or regenerate matching card.
                           </p>
                           <form action="<?= url_for('admin_reupload_voter_certificate', ['voter_id' => $voter['id']]) ?>" method="POST" enctype="multipart/form-data">
+                            <?= csrf_field() ?>
                             <div class="form-group" style="margin-bottom: 10px;">
                               <label class="form-label" style="font-size: 0.75rem; margin-bottom: 2px;">New Certificate Scan</label>
                               <input type="file" name="citizenship_photo" class="form-control" style="font-size: 0.78rem; padding: 4px;" accept="image/*,.pdf,.svg">
@@ -221,12 +223,14 @@ $section_subtitle = "Electoral roll verification and status control";
             <td>
               <?php if (empty($voter['is_verified'])): ?>
                 <form action="<?= url_for('admin_verify_voter', ['voter_id' => $voter['id']]) ?>" method="POST" style="display: inline;">
+                  <?= csrf_field() ?>
                   <button type="submit" class="btn btn-outline btn-sm" style="color: #16a34a; border-color: #16a34a; font-size: 0.75rem;">
                     Approve Voter
                   </button>
                 </form>
               <?php endif; ?>
               <form action="<?= url_for('admin_toggle_voter', ['voter_id' => $voter['id']]) ?>" method="POST" style="display: inline;">
+                <?= csrf_field() ?>
                 <?php if (!empty($voter['is_active'])): ?>
                   <button type="submit" class="btn btn-outline btn-sm" style="color: #dc2626; border-color: #dc2626; font-size: 0.75rem;">
                     Deactivate

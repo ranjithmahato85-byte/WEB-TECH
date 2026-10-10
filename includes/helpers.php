@@ -27,6 +27,26 @@ function get_flashed_messages(): array {
     return $flashes;
 }
 
+function csrf_token(): string {
+    if (empty($_SESSION['_csrf_token'])) {
+        $_SESSION['_csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['_csrf_token'];
+}
+
+function csrf_field(): string {
+    return '<input type="hidden" name="_csrf" value="' . htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') . '">';
+}
+
+function require_csrf(): void {
+    $submitted = (string)($_POST['_csrf'] ?? '');
+    $expected = (string)($_SESSION['_csrf_token'] ?? '');
+    if ($expected === '' || $submitted === '' || !hash_equals($expected, $submitted)) {
+        http_response_code(419);
+        exit('Invalid or expired form security token.');
+    }
+}
+
 function redirect(string $url): void {
     header("Location: $url");
     exit;

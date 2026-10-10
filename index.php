@@ -107,6 +107,9 @@ function handle_about(): void {
 // 2. AUTHENTICATION (LOGIN / REGISTER / LOGOUT)
 // =============================================================================
 function handle_login(): void {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        require_csrf();
+    }
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         render_page('login', [], 'base');
         return;
@@ -136,6 +139,9 @@ function handle_login(): void {
 }
 
 function handle_register(): void {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        require_csrf();
+    }
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         render_page('register', [], 'base');
         return;
@@ -350,8 +356,8 @@ function handle_election_vote(int $electionId): void {
         redirect_to('voter_dashboard');
     }
 
-    // Rule 1: One citizenship holder can vote only once across all elections
-    $priorVote = get_prior_vote_for_user($user);
+    // Rule 1: one verified voter may vote once in this election.
+    $priorVote = user_has_voted_in_election($user['id'], $electionId);
     if ($priorVote) {
         flash('One Verified Voter, One Vote Per Election: you have already voted in this election.', 'warning');
         redirect_to('voting_status');
@@ -389,8 +395,8 @@ function handle_election_vote_confirm(int $electionId): void {
         redirect_to('voter_dashboard');
     }
 
-    // Rule 1: One citizenship, one vote
-    if (get_prior_vote_for_user($user)) {
+    // Rule 1: one verified voter may vote once in this election.
+    if (user_has_voted_in_election($user['id'], $electionId)) {
         flash('One Verified Voter, One Vote Per Election: you have already voted in this election.', 'error');
         redirect_to('voting_status');
     }
@@ -429,6 +435,7 @@ function handle_election_vote_confirm(int $electionId): void {
 
 function handle_election_cast_vote(int $electionId): void {
     login_required();
+    require_csrf();
 
     $user        = current_user();
     $candidateId = isset($_POST['candidate_id']) ? (int)$_POST['candidate_id'] : 0;
@@ -451,7 +458,7 @@ function handle_election_cast_vote(int $electionId): void {
     }
 
     // Guard 0: one verified voter, one vote per election
-    if (get_prior_vote_for_user($user)) {
+    if (user_has_voted_in_election($user['id'], $electionId)) {
         flash('One Verified Voter, One Vote Per Election: you have already voted in this election.', 'error');
         redirect_to('voting_status');
     }
@@ -491,7 +498,7 @@ function handle_election_cast_vote(int $electionId): void {
     }
 
     // Guard 5: atomic re-check against double voting before commit
-    if (get_prior_vote_for_user($user)) {
+    if (user_has_voted_in_election($user['id'], $electionId)) {
         flash('One Verified Voter, One Vote Per Election: you have already voted in this election.', 'error');
         redirect_to('voting_status');
     }
@@ -580,9 +587,10 @@ function handle_voting_status(): void {
 
 function handle_voter_profile(): void {
     login_required();
-    $user = current_user();
 
+    $user = current_user();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        require_csrf();
         $fullName    = trim($_POST['full_name'] ?? '');
         $mobile      = trim($_POST['mobile'] ?? '');
         $email       = trim($_POST['email'] ?? '');
@@ -710,6 +718,9 @@ function handle_historical_elections(): void {
 // =============================================================================
 function handle_admin_login(): void {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        require_csrf();
+    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = trim($_POST['username'] ?? '');
         $password = (string)($_POST['password'] ?? '');
 
@@ -746,6 +757,7 @@ function handle_admin_elections(): void {
 
 function handle_admin_create_election(): void {
     admin_required();
+    require_csrf();
 
     $title = trim($_POST['title'] ?? '');
     election_create([
@@ -765,6 +777,7 @@ function handle_admin_create_election(): void {
 
 function handle_admin_update_election_status(int $electionId): void {
     admin_required();
+    require_csrf();
 
     $election = election_find_by_id($electionId);
     $status   = trim($_POST['status'] ?? '');
@@ -785,6 +798,7 @@ function handle_admin_candidates(): void {
 
 function handle_admin_create_candidate(): void {
     admin_required();
+    require_csrf();
 
     $name       = trim($_POST['name'] ?? '');
     $symbolRaw  = $_POST['symbol'] ?? 'Tree|tree.svg';
@@ -809,6 +823,7 @@ function handle_admin_create_candidate(): void {
 
 function handle_admin_delete_candidate(int $candidateId): void {
     admin_required();
+    require_csrf();
 
     $candidate = candidate_find_by_id($candidateId);
     if ($candidate) {
@@ -830,6 +845,7 @@ function handle_admin_voters(): void {
 
 function handle_admin_toggle_voter(int $voterId): void {
     admin_required();
+    require_csrf();
 
     $voter = user_find_by_id($voterId);
     if ($voter && $voter['role'] === 'voter') {
@@ -842,6 +858,7 @@ function handle_admin_toggle_voter(int $voterId): void {
 
 function handle_admin_verify_voter(int $voterId): void {
     admin_required();
+    require_csrf();
 
     $voter = user_find_by_id($voterId);
     if ($voter && $voter['role'] === 'voter') {
@@ -853,6 +870,7 @@ function handle_admin_verify_voter(int $voterId): void {
 
 function handle_admin_update_voter_details(int $voterId): void {
     admin_required();
+    require_csrf();
 
     $voter = user_find_by_id($voterId);
     if ($voter && $voter['role'] === 'voter') {
@@ -879,6 +897,7 @@ function handle_admin_update_voter_details(int $voterId): void {
 
 function handle_admin_reupload_voter_certificate(int $voterId): void {
     admin_required();
+    require_csrf();
 
     $voter = user_find_by_id($voterId);
     if (!$voter || $voter['role'] !== 'voter') {

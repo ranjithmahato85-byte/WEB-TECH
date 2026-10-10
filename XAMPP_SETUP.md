@@ -99,19 +99,11 @@ switched to MySQL/MariaDB instead (create `voting` db in phpMyAdmin, update
 
 ---
 
-## 4. Demo credentials
+## 4. Account setup
 
-| Role | Username | Password |
-| :--- | :--- | :--- |
-| Voter | `ranjeet` | `password123` |
-| Voter | `bikash`, `pooja`, `binod`, `sitamaya` | `password123` |
-| Administrator | `admin` | `admin123` |
-
-> The demo accounts were originally hashed with Werkzeug's **scrypt** algorithm,
-> which PHP cannot verify natively. On the first successful login of a demo
-> account, `includes/auth.php` transparently re-hashes the password with PHP's
-> `password_hash()`. Accounts registered through the old Flask app with unknown
-> passwords (`ranjit`, `amit`) must be re-registered or have their password reset.
+No demo credentials are published or pre-filled by the application. Configure
+authorized accounts through the active authentication workflow and keep their
+passwords outside the repository.
 
 ---
 

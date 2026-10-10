@@ -18,11 +18,10 @@ $page_title = "Voter Login - Nepal Online Voting System";
       </div>
 
       <div style="position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.25rem;">
-        <div style="font-size: 0.8rem; color: #94a3b8;">
-          <strong style="color: #ffffff;">Academic Viva Demo Accounts:</strong><br>
-          &bull; <strong>Voter:</strong> <code>ranjeet</code> &bull; Pass: <code>password123</code><br>
-          &bull; <strong>Admin:</strong> <code>admin</code> &bull; Pass: <code>admin123</code>
-        </div>
+      <div style="font-size: 0.8rem; color: #94a3b8;">
+        <strong style="color: #ffffff;">Secure account access</strong><br>
+        Use your registered credentials. Demo passwords are not displayed in the application.
+      </div>
       </div>
     </div>
 
@@ -34,6 +33,7 @@ $page_title = "Voter Login - Nepal Online Voting System";
       </div>
 
       <form action="<?= url_for('login') ?>" method="POST">
+        <?= csrf_field() ?>
         <div class="form-group">
           <label class="form-label" for="username">Username or Email</label>
           <div class="input-with-icon">
@@ -73,28 +73,8 @@ $page_title = "Voter Login - Nepal Online Voting System";
             Don't have an account? <a href="<?= url_for('register') ?>" style="font-weight: 600;">Register</a>
           </div>
 
-          <!-- Viva Quick Test Buttons -->
-          <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px dashed var(--border-color); display: flex; gap: 8px;">
-            <button type="button" class="btn btn-outline btn-sm" style="flex: 1;" onclick="fillVoter()">
-              Fill Demo Voter
-            </button>
-            <button type="button" class="btn btn-outline btn-sm" style="flex: 1;" onclick="fillAdmin()">
-              Fill Demo Admin
-            </button>
-          </div>
         </div>
       </form>
     </div>
   </div>
 </div>
-
-<script>
-function fillVoter() {
-  document.getElementById('username').value = 'ranjeet';
-  document.getElementById('password').value = 'password123';
-}
-function fillAdmin() {
-  document.getElementById('username').value = 'admin';
-  document.getElementById('password').value = 'admin123';
-}
-</script>

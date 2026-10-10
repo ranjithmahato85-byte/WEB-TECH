@@ -209,29 +209,39 @@ function candidate_total_votes() {
 // VOTER PARTICIPATION & CONSTITUTIONAL BALLOT SECRECY
 // -----------------------------------------------------------------------------
 
-function get_prior_vote_for_user($user) {
+function get_prior_vote_for_user($user, ?int $electionId = null) {
     if (!$user) return null;
     $db = get_db();
 
     // 1. Direct user_id check
     $userId = is_array($user) ? $user['id'] : $user->id;
-    $stmt = $db->prepare("SELECT * FROM voter_participation WHERE user_id = :uid LIMIT 1");
-    $stmt->execute([':uid' => $userId]);
+    $sql = "SELECT * FROM voter_participation WHERE user_id = :uid";
+    $params = [':uid' => $userId];
+    if ($electionId !== null) {
+        $sql .= " AND election_id = :eid";
+        $params[':eid'] = $electionId;
+    }
+    $sql .= " ORDER BY id DESC LIMIT 1";
+    $stmt = $db->prepare($sql);
+    $stmt->execute($params);
     $p = $stmt->fetch();
     if ($p) return $p;
 
-    // 2. National citizenship_no check across participation registry
+    // 2. Match the normalized citizenship identity only within this election.
     $citNo = is_array($user) ? ($user['citizenship_no'] ?? '') : ($user->citizenship_no ?? '');
     if (!empty($citNo)) {
         $cleanCit = strtolower(str_replace(['-', ' '], '', $citNo));
         if (!empty($cleanCit)) {
-            $stmt = $db->query("SELECT * FROM voter_participation");
-            while ($row = $stmt->fetch()) {
-                $rowCit = strtolower(str_replace(['-', ' '], '', $row['citizenship_no'] ?? ''));
-                if ($rowCit === $cleanCit) {
-                    return $row;
-                }
+            $sql = "SELECT * FROM voter_participation WHERE REPLACE(REPLACE(LOWER(citizenship_no), '-', ''), ' ', '') = :cit";
+            $params = [':cit' => $cleanCit];
+            if ($electionId !== null) {
+                $sql .= " AND election_id = :eid";
+                $params[':eid'] = $electionId;
             }
+            $sql .= " ORDER BY id DESC LIMIT 1";
+            $stmt = $db->prepare($sql);
+            $stmt->execute($params);
+            return $stmt->fetch() ?: null;
         }
     }
 
@@ -284,8 +294,8 @@ function user_create(array $data): int {
         ':voter_id' => $data['voter_id'],
         ':citizenship_no' => $data['citizenship_no'] ?? null,
         ':citizenship_photo' => $data['citizenship_photo'] ?? 'sample-citizenship-card.svg',
-        ':has_citizenship_verified' => isset($data['has_citizenship_verified']) ? (int)$data['has_citizenship_verified'] : 1,
-        ':is_verified' => isset($data['is_verified']) ? (int)$data['is_verified'] : 1,
+        ':has_citizenship_verified' => isset($data['has_citizenship_verified']) ? (int)$data['has_citizenship_verified'] : 0,
+        ':is_verified' => isset($data['is_verified']) ? (int)$data['is_verified'] : 0,
         ':is_active' => isset($data['is_active']) ? (int)$data['is_active'] : 1,
     ]);
     return (int)$db->lastInsertId();

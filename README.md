@@ -33,14 +33,11 @@ No database import is needed — the app reuses `instance/voting.db` as-is.
 > Full setup, virtual-host configuration, the phpMyAdmin/SQLite caveat and a
 > troubleshooting table are documented in **[XAMPP_SETUP.md](XAMPP_SETUP.md)**.
 
-### Demo Login Credentials for Viva Presentation:
-- **Verified Voter:**
-  - Username: `ranjeet`
-  - Password: `password123`
-  - Voter ID: `NV-2026-8891` (Bagmati Province, Ward 10)
-- **Election Commission Administrator:**
-  - Username: `admin`
-  - Password: `admin123`
+### Account setup
+
+The application does not publish or pre-fill demo passwords. Use accounts
+created through the configured authentication workflow and keep credentials
+outside the repository.
 
 ---
 
@@ -88,7 +85,7 @@ views in `views/`.
 1. Public Homepage (/)
    ↓ (Click "Login" or "Vote Now")
 2. Login Page (/login)
-   ↓ (Authenticate as ranjeet / password123)
+   ↓ (Authenticate with your registered voter account)
 3. Voter Dashboard (/dashboard)
    ↓ (Click "My Elections" or "Cast Your Vote")
 4. My Elections (/my-elections)
@@ -106,7 +103,7 @@ views in `views/`.
 ### 2. Administrator Journey:
 ```
 1. Admin Login (/admin/login)
-   ↓ (Authenticate as admin / admin123)
+   ↓ (Authenticate with an authorized administrator account)
 2. Admin Dashboard (/admin/dashboard)
    ↓ (Review turnout graph, top 4 metrics, and recent events)
 3. Manage Elections (/admin/elections)

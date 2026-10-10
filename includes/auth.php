@@ -78,43 +78,6 @@ function hash_password(string $plain): string {
     return password_hash($plain, PASSWORD_DEFAULT);
 }
 
-/**
- * Demo credentials that were seeded by the original Flask application and
- * therefore exist only as Werkzeug scrypt hashes (which PHP cannot verify).
- * On a successful match the hash is transparently upgraded to a PHP hash.
- */
-const LEGACY_DEMO_CREDENTIALS = [
-    'admin' => 'admin123',
-    'ranjeet' => 'password123',
-    'bikash' => 'password123',
-    'pooja' => 'password123',
-    'binod' => 'password123',
-    'sitamaya' => 'password123',
-];
-
 function verify_user_password(string $plain, string $storedHash, array &$user): bool {
-    // 1. Standard PHP password_verify (Bcrypt, Argon2)
-    if (password_verify($plain, $storedHash)) {
-        return true;
-    }
-
-    // 2. Legacy Werkzeug scrypt hash left over from the Python/SQLAlchemy schema.
-    //    PHP has no native scrypt support, so only the documented demo accounts
-    //    can be matched; any other legacy account must reset its password.
-    if (str_starts_with($storedHash, 'scrypt:')) {
-        $username = strtolower($user['username'] ?? '');
-        $expected = LEGACY_DEMO_CREDENTIALS[$username] ?? null;
-
-        if ($expected !== null && hash_equals($expected, $plain)) {
-            // Upgrade the stored hash to a native PHP password_hash
-            $newHash = hash_password($plain);
-            $db = get_db();
-            $stmt = $db->prepare("UPDATE users SET password_hash = :h WHERE id = :id");
-            $stmt->execute([':h' => $newHash, ':id' => $user['id']]);
-            $user['password_hash'] = $newHash;
-            return true;
-        }
-    }
-
-    return false;
+    return password_verify($plain, $storedHash);
 }

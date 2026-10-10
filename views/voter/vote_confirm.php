@@ -68,6 +68,7 @@ $section_subtitle = "Step 2 of 2: Review & Final Confirmation";
 
     <!-- FORM SUBMISSION -->
     <form action="<?= url_for('election_cast_vote', ['election_id' => $election['id']]) ?>" method="POST" enctype="multipart/form-data">
+      <?= csrf_field() ?>
       <input type="hidden" name="candidate_id" value="<?= $candidate['id'] ?>">
 
       <!-- 1. CITIZENSHIP NUMBER INPUT -->

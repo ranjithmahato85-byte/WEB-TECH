@@ -118,6 +118,7 @@ $section_subtitle = "Official Electoral Register Record";
         </div>
 
         <form action="<?= url_for('voter_profile') ?>" method="POST" enctype="multipart/form-data">
+          <?= csrf_field() ?>
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;" class="form-row">
             <div class="form-group">
               <label class="form-label" for="prof_fullname">Full Legal Name <span class="required">*</span></label>

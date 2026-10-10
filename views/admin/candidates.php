@@ -56,6 +56,7 @@ $section_subtitle = "Review candidate nominations, party tickets, and symbols";
                   View
                 </a>
                 <form action="<?= url_for('admin_delete_candidate', ['candidate_id' => $cand['id']]) ?>" method="POST" onsubmit="return confirm('Are you sure you want to delete this candidate?');" style="display: inline;">
+                  <?= csrf_field() ?>
                   <button type="submit" class="btn btn-outline btn-sm" style="color: #dc2626; border-color: #dc2626;">
                     Delete
                   </button>
@@ -79,6 +80,7 @@ $section_subtitle = "Review candidate nominations, party tickets, and symbols";
     </div>
 
     <form action="<?= url_for('admin_create_candidate') ?>" method="POST">
+      <?= csrf_field() ?>
       <div class="modal-body">
         <div class="form-group">
           <label class="form-label" for="cand_name">Candidate Full Name <span class="required">*</span></label>

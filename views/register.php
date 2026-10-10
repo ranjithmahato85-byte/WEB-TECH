@@ -19,6 +19,7 @@ $page_title = "Voter Registration - Nepal Online Voting System";
     <!-- Registration Form Body -->
     <div style="padding: 2.5rem;">
       <form action="<?= url_for('register') ?>" method="POST">
+        <?= csrf_field() ?>
         <!-- 2 Column Grid on Desktop -->
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;" class="form-row">
           

@@ -53,16 +53,19 @@ $section_subtitle = "Create, configure, and control electoral contests";
                 <div style="display: flex; gap: 6px;">
                   <?php if ($el['status'] === 'Upcoming'): ?>
                     <form action="<?= url_for('admin_update_election_status', ['election_id' => $el['id']]) ?>" method="POST" style="display: inline;">
+                      <?= csrf_field() ?>
                       <input type="hidden" name="status" value="Active">
                       <button type="submit" class="btn btn-outline btn-sm" style="color: #16a34a; border-color: #16a34a;">Activate</button>
                     </form>
                   <?php elseif ($el['status'] === 'Active'): ?>
                     <form action="<?= url_for('admin_update_election_status', ['election_id' => $el['id']]) ?>" method="POST" style="display: inline;">
+                      <?= csrf_field() ?>
                       <input type="hidden" name="status" value="Completed">
                       <button type="submit" class="btn btn-outline btn-sm" style="color: #dc2626; border-color: #dc2626;">Close &amp; Certify</button>
                     </form>
                   <?php else: ?>
                     <form action="<?= url_for('admin_update_election_status', ['election_id' => $el['id']]) ?>" method="POST" style="display: inline;">
+                      <?= csrf_field() ?>
                       <input type="hidden" name="status" value="Active">
                       <button type="submit" class="btn btn-outline btn-sm">Re-open</button>
                     </form>
@@ -89,6 +92,7 @@ $section_subtitle = "Create, configure, and control electoral contests";
     </div>
 
     <form action="<?= url_for('admin_create_election') ?>" method="POST">
+      <?= csrf_field() ?>
       <div class="modal-body">
         <div class="form-group">
           <label class="form-label" for="title">Election Title <span class="required">*</span></label>

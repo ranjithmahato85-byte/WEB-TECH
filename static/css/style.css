@@ -1276,6 +1276,64 @@ a:hover {
   justify-content: space-between;
 }
 
+.public-message {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  color: var(--text-muted);
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.public-message-error {
+  color: #991b1b;
+  background: #fff1f2;
+  border-color: #fecdd3;
+}
+
+.election-description {
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.candidate-name {
+  margin-bottom: 0.25rem;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.candidate-party,
+.candidate-election,
+.candidate-bio,
+.candidate-symbol {
+  margin-bottom: 0.45rem;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+}
+
+.candidate-bio {
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+.candidate-symbol {
+  width: 100%;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border-light);
+  font-weight: 600;
+}
+
+.public-toolbar {
+  min-width: min(100%, 280px);
+}
+
+.result-votes {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--text-muted);
+}
+
 /* ==========================================================================
    CANDIDATE CARDS
    ========================================================================== */
@@ -2055,4 +2113,3 @@ a:hover {
     grid-template-columns: 1fr;
   }
 }
-

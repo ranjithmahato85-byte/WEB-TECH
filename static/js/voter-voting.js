@@ -25,7 +25,7 @@
   async function requireVoter() {
     const profile = await root.VotingAuth.getCurrentProfile();
     if (!profile) {
-      window.location.href = '../auth/login.html';
+      window.location.href = '../login.html';
       throw new Error('Sign in to continue.');
     }
     if (!root.VotingAuth.isApprovedVoter(profile)) {

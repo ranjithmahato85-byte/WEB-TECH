@@ -27,7 +27,7 @@
 
     const profile = await root.VotingAuth.getCurrentProfile();
     if (!profile) {
-      window.location.href = '../auth/login.html';
+      window.location.href = '../login.html';
       return;
     }
 

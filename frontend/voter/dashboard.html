@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voter Dashboard - Nepal Online Voting System</title>
+  <link rel="stylesheet" href="../../static/css/style.css">
+  <link rel="stylesheet" href="../../static/css/dashboard.css">
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/images/nepal-flag.svg">
+</head>
+<body data-required-role="voter">
+  <div class="dashboard-wrapper">
+    <aside class="sidebar">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar"><img src="../../static/images/candidates/voter-avatar.svg" alt="Voter avatar"></div>
+        <div class="sidebar-user-info">
+          <span class="sidebar-user-name" data-profile-name>Loading...</span>
+          <div class="sidebar-user-role"><span>Voter account</span></div>
+        </div>
+      </div>
+      <nav class="sidebar-nav" aria-label="Voter navigation">
+        <a href="./dashboard.html" class="sidebar-link active"><span>Dashboard</span></a>
+        <a href="./elections.html" class="sidebar-link"><span>My Elections</span></a>
+        <a href="./status.html" class="sidebar-link"><span>Voting Status</span></a>
+        <a href="../index.html" class="sidebar-link"><span>Public Site</span></a>
+        <button type="button" class="sidebar-link" data-sign-out style="border: 0; background: transparent; cursor: pointer; text-align: left; color: #f87171;"><span>Logout</span></button>
+      </nav>
+      <div class="sidebar-footer">
+        <img src="../../static/images/nepal-flag.svg" alt="Nepal flag" class="sidebar-flag">
+        <span class="sidebar-motto">Together for a stronger democracy in Nepal</span>
+      </div>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-bar">
+        <div class="page-headline">
+          <h1 class="page-title">Voter Dashboard</h1>
+          <span class="page-subtext">National Democratic Online Voting System</span>
+        </div>
+        <a href="../index.html" class="btn btn-outline btn-sm">Public Site</a>
+      </header>
+      <main class="content-body">
+        <section class="welcome-banner">
+          <div>
+            <h2 class="welcome-title">Welcome, <span data-profile-name>voter</span></h2>
+            <p class="welcome-subtitle">Your account status and secure election access are managed through Supabase.</p>
+          </div>
+        </section>
+        <div class="portal-status" data-profile-status role="status" aria-live="polite">Loading account status...</div>
+        <section class="dashboard-grid" style="margin-top: 1.5rem;">
+          <article class="dashboard-card">
+            <h2>Active elections</h2>
+            <p>Review eligible elections and cast one secure vote per election.</p>
+            <a class="btn btn-primary" href="./elections.html">View elections</a>
+          </article>
+          <article class="dashboard-card">
+            <h2>Voting status</h2>
+            <p>Confirm participation without revealing which candidate you selected.</p>
+            <a class="btn btn-outline" href="./status.html">View status</a>
+          </article>
+        </section>
+        <section class="dashboard-card" style="margin-top: 1.5rem;">
+          <h2>Citizenship document</h2>
+          <p class="auth-help">Upload one clear JPG, PNG, or PDF copy. Maximum file size: 5 MB.</p>
+          <form data-document-form>
+            <div class="auth-message" data-document-message role="alert" aria-live="polite"></div>
+            <div class="form-group">
+              <label class="form-label" for="document">Citizenship document</label>
+              <input id="document" name="document" type="file" accept=".jpg,.jpeg,.png,.pdf" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit document</button>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../../static/js/supabase-config.js"></script>
+  <script src="../../static/js/supabase-client.js"></script>
+  <script src="../../static/js/supabase-auth.js"></script>
+  <script src="../../static/js/portal-page.js"></script>
+  <script src="../../static/js/voter-document.js"></script>
+</body>
+</html>

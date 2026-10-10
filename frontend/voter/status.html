@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voting Status - Nepal Online Voting System</title>
+  <link rel="stylesheet" href="../../static/css/style.css">
+  <link rel="stylesheet" href="../../static/css/dashboard.css">
+  <link rel="stylesheet" href="../../static/css/supabase-auth.css">
+  <link rel="icon" type="image/svg+xml" href="../../static/images/nepal-flag.svg">
+</head>
+<body data-required-role="voter">
+  <div class="dashboard-wrapper">
+    <aside class="sidebar"><div class="sidebar-user"><div class="sidebar-avatar"><img src="../../static/images/candidates/voter-avatar.svg" alt="Voter avatar"></div><div class="sidebar-user-info"><span class="sidebar-user-name">Voter portal</span><div class="sidebar-user-role"><span>Private participation records</span></div></div></div><nav class="sidebar-nav" aria-label="Voter navigation"><a href="./dashboard.html" class="sidebar-link"><span>Dashboard</span></a><a href="./elections.html" class="sidebar-link"><span>My Elections</span></a><a href="./status.html" class="sidebar-link active"><span>Voting Status</span></a><a href="../index.html" class="sidebar-link"><span>Public Site</span></a></nav><div class="sidebar-footer"><img src="../../static/images/nepal-flag.svg" alt="Nepal flag" class="sidebar-flag"><span class="sidebar-motto">Participation without candidate disclosure</span></div></aside>
+    <div class="main-content">
+      <header class="top-bar"><div class="page-headline"><h1 class="page-title">Voting Status</h1><span class="page-subtext">Your participation history</span></div><a href="./dashboard.html" class="btn btn-outline btn-sm">Dashboard</a></header>
+      <main class="content-body"><section class="dashboard-card"><p class="auth-help">This page confirms participation only. It never shows which candidate you selected.</p><div class="auth-message" data-status-message role="alert" aria-live="polite"></div><div class="verification-list" data-participation-list>Loading participation records...</div></section></main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../../static/js/supabase-config.js"></script><script src="../../static/js/supabase-client.js"></script><script src="../../static/js/supabase-auth.js"></script><script src="../../static/js/voter-status.js"></script>
+</body>
+</html>

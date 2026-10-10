@@ -43,6 +43,18 @@ outside the repository.
 
 ## 🗺️ Complete Route & Page Directory
 
+## Static frontend migration
+
+The preserved Nepal-themed interface is being converted to a static
+HTML/CSS/JavaScript frontend under [`frontend/`](frontend). The first static
+slice includes the public home page, voter login, and voter registration. These
+pages use Supabase Auth and the browser publishable key only.
+
+The legacy PHP application remains available during migration so each flow can
+be compared and tested before removal. Do not delete the PHP or SQLite surfaces
+until voter, administrator, voting, storage, and certified-results flows have
+passed end-to-end validation.
+
 The route table below documents the original Flask routes. Every one of them is
 preserved by the PHP front controller (`index.php`) and renders the ported PHP
 views in `views/`.

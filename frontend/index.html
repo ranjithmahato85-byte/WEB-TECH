@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nepal Online Voting System - Secure Digital Voting</title>
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/dashboard.css">
+  <link rel="icon" type="image/svg+xml" href="../static/images/nepal-flag.svg">
+</head>
+<body>
+  <header class="public-header">
+    <div class="container header-inner">
+      <a href="./index.html" class="brand-wrapper">
+        <img src="../static/images/nepal-flag.svg" alt="Nepal Flag" class="brand-flag">
+        <div class="brand-text">
+          <span class="brand-title">Nepal Online Voting System</span>
+          <span class="brand-subtitle">Your Vote, Our Future</span>
+        </div>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="./index.html" class="nav-link active">Home</a></li>
+          <li><a href="./elections.html" class="nav-link">Elections</a></li>
+          <li><a href="./candidates.html" class="nav-link">Candidates</a></li>
+          <li><a href="./results.html" class="nav-link">Results</a></li>
+          <li><a href="./about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+      <div class="header-right">
+        <div class="lang-switch" title="Switch language / भाषा परिवर्तन गर्नुहोस्" role="button" tabindex="0">
+          <span class="lang-opt active" data-lang="en">EN</span>
+          <span class="lang-divider">|</span>
+          <span class="lang-opt" data-lang="ne">नेपाली</span>
+        </div>
+        <div class="auth-actions" data-auth-actions>
+          <a href="./login.html" class="btn btn-outline-primary btn-sm">Login</a>
+          <a href="./register.html" class="btn btn-primary btn-sm">Register</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle Navigation">
+          <svg width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="hero-ambient-orb orb-left"></div>
+      <div class="hero-ambient-orb orb-right"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-live-badge">
+            <span class="hero-badge-np">संघीय लोकतान्त्रिक गणतन्त्र नेपाल</span>
+            <span class="hero-badge-sep">&bull;</span>
+            <span class="hero-badge-en">Official Digital Ballot Portal</span>
+          </div>
+          <h1 class="hero-title">Secure Digital<br><span class="hero-gradient-text">Voting for Nepal</span></h1>
+          <p class="hero-description">A tamper-evident digital balloting platform for transparent, secret, and audited federal, provincial, and local elections.</p>
+          <div class="hero-actions" data-hero-actions>
+            <a href="./login.html" class="btn btn-crimson btn-lg hero-btn-glow"><span>Vote Now</span><span aria-hidden="true">-&gt;</span></a>
+            <a href="./elections.html" class="btn btn-hero-secondary btn-lg"><span>View Elections</span></a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-glow-backdrop"></div>
+          <div class="hero-image-card"><img src="../static/images/parliament.jpg" alt="Nepal parliament building"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-strip">
+      <div class="container trust-strip-grid">
+        <div class="trust-stat"><div class="trust-stat-value">17,988,570</div><div class="trust-stat-label">Registered Electorate (2079)</div></div>
+        <div class="trust-stat"><div class="trust-stat-value">7</div><div class="trust-stat-label">Provinces Covered</div></div>
+        <div class="trust-stat"><div class="trust-stat-value">753</div><div class="trust-stat-label">Local Units Modeled</div></div>
+        <div class="trust-stat"><div class="trust-stat-value">61.4%</div><div class="trust-stat-label">2079 National Turnout</div></div>
+      </div>
+    </section>
+
+    <section class="section" style="background-color: #ffffff; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+      <div class="container">
+        <div class="section-header-centered">
+          <h2 class="section-title">Key System Features</h2>
+          <p class="section-subtitle">Built to uphold democratic integrity, voter privacy, and administrative transparency</p>
+        </div>
+        <div class="capability-split">
+          <div class="capability-lead">
+            <div class="capability-lead-text"><h3 class="capability-title">Ballot Secrecy Protocol</h3><p class="capability-desc">Individual selections are decoupled from voter identity in the database. Even system administrators cannot trace which candidate a voter chose.</p></div>
+            <div class="capability-lead-media"><img src="../static/images/nepal-flag.svg" alt="Flag of Nepal" style="width: 64px; height: 80px; margin: 0 auto; filter: drop-shadow(0 6px 14px rgba(15, 23, 42, 0.18));"></div>
+          </div>
+          <div class="capability-list">
+            <div class="capability-row"><div class="feature-icon-wrapper" style="width: 44px; height: 44px; margin-bottom: 0; flex-shrink: 0;">&#10003;</div><div><h3 class="capability-title" style="font-size: 1.02rem;">Voter ID &amp; Ward Verification</h3><p class="capability-desc" style="font-size: 0.88rem;">Eligibility is verified against Nepal's 7 provinces, 77 districts, and municipal ward allocations before a ballot can be cast.</p></div></div>
+            <div class="capability-row"><div class="feature-icon-wrapper" style="width: 44px; height: 44px; margin-bottom: 0; flex-shrink: 0;">&#9673;</div><div><h3 class="capability-title" style="font-size: 1.02rem;">Real-time Transparent Tally</h3><p class="capability-desc" style="font-size: 0.88rem;">Automated tabulation removes human counting errors, with clear turnout metrics and candidate percentage distributions.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header-centered"><h2 class="section-title">How The System Works</h2><p class="section-subtitle">A four-stage process designed for every citizen</p></div>
+        <div class="steps-grid">
+          <div class="step-card"><div class="step-number">1</div><h3 class="step-title">Register</h3><p class="step-desc">Sign up with your citizenship or voter ID, provincial address, and local ward.</p></div>
+          <div class="step-card"><div class="step-number">2</div><h3 class="step-title">Browse</h3><p class="step-desc">Review active elections, candidate biographies, and certified party symbols.</p></div>
+          <div class="step-card"><div class="step-number">3</div><h3 class="step-title">Vote</h3><p class="step-desc">Select a candidate, confirm your choice on screen, and cast a secret ballot.</p></div>
+          <div class="step-card"><div class="step-number">4</div><h3 class="step-title">Verify</h3><p class="step-desc">Receive a tamper-evident confirmation number while your choice stays secret.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="public-footer">
+    <div class="container"><div class="footer-grid">
+      <div class="footer-brand"><div class="footer-logo"><img src="../static/images/nepal-flag.svg" alt="Nepal Flag" style="width: 26px; height: 32px;"><span class="footer-logo-text">Nepal Online Voting System</span></div><p class="footer-desc">A secure digital balloting platform designed for transparent, accessible, and auditable democratic voting in Nepal.</p></div>
+      <div><h4 class="footer-column-title">Quick Links</h4><ul class="footer-links"><li><a href="./index.html" class="footer-link">Home</a></li><li><a href="./elections.html" class="footer-link">Elections Directory</a></li><li><a href="./candidates.html" class="footer-link">Candidates Directory</a></li><li><a href="./results.html" class="footer-link">Election Results</a></li></ul></div>
+      <div><h4 class="footer-column-title">Voter Portal</h4><ul class="footer-links"><li><a href="./login.html" class="footer-link">Voter Login</a></li><li><a href="./register.html" class="footer-link">New Voter Registration</a></li><li><a href="./admin/login.html" class="footer-link">Administrative Portal</a></li></ul></div>
+      <div><h4 class="footer-column-title">Security &amp; Trust</h4><ul class="footer-links"><li class="footer-link">Ballot Secrecy Protocol</li><li class="footer-link">End-to-End Audit Logs</li><li class="footer-link">Voter ID Verification</li></ul></div>
+    </div><div class="footer-bottom"><div>&copy; 2026 Nepal Online Voting System (Academic Project). All rights reserved.</div></div></div>
+  </footer>
+  <script src="../static/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../static/js/supabase-config.js"></script>
+  <script src="../static/js/supabase-client.js"></script>
+  <script src="../static/js/supabase-auth.js"></script>
+  <script src="../static/js/static-auth-ui.js"></script>
+</body>
+</html>

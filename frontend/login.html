@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voter Login - Nepal Online Voting System</title>
+  <link rel="stylesheet" href="../static/css/style.css"><link rel="stylesheet" href="../static/css/dashboard.css"><link rel="stylesheet" href="../static/css/supabase-auth.css"><link rel="icon" type="image/svg+xml" href="../static/images/nepal-flag.svg">
+</head>
+<body>
+  <div class="auth-page-wrapper">
+    <div class="auth-split-card">
+      <div class="auth-left-banner"><div class="auth-left-content"><div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 9999px; font-size: 0.8rem; font-weight: 600;"><img src="../static/images/nepal-flag.svg" alt="Flag" style="width: 16px; height: 20px;"><span>Citizen Portal</span></div><h2 class="auth-left-title">Empowering Every Nepali Citizen</h2><p class="auth-left-desc">Your vote is your voice in shaping the future of Nepal. Access your verified ballot safely and exercise your democratic right with complete secrecy.</p></div><div style="position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 1.25rem;"><div style="font-size: 0.8rem; color: #94a3b8;"><strong style="color: #ffffff;">Secure account access</strong><br>Use your registered Supabase account.</div></div></div>
+      <div class="auth-form-side"><div class="auth-header"><h2 class="auth-title">Login to Your Account</h2><p class="auth-subtitle">Access your account to participate in national elections.</p></div>
+        <div id="auth-message" class="alert" hidden role="status"></div>
+        <form id="login-form">
+          <div class="form-group"><label class="form-label" for="email">Email Address</label><div class="input-with-icon"><input type="email" id="email" class="form-control" placeholder="Enter your email address" required autofocus></div></div>
+          <div class="form-group"><label class="form-label" for="password">Password</label><div class="input-with-icon"><input type="password" id="password" class="form-control" placeholder="Enter your password" required></div></div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;"><label class="form-check"><input type="checkbox" checked><span>Remember me</span></label><button type="button" id="reset-password" class="link-button">Forgot password?</button></div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 11px;">Login</button>
+          <div style="text-align: center; margin-top: 10px; font-size: 0.88rem; color: var(--text-muted);">Don't have an account? <a href="./register.html" style="font-weight: 600;">Register</a></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="../static/js/supabase-config.js"></script><script src="../static/js/supabase-client.js"></script><script src="../static/js/supabase-auth.js"></script><script src="../static/js/static-auth-ui.js"></script>
+</body>
+</html>

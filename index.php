@@ -108,10 +108,8 @@ function handle_about(): void {
 // =============================================================================
 function handle_login(): void {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $next = trim((string)($_GET['next'] ?? ''));
-        $query = $next !== '' ? '?next=' . rawurlencode($next) : '';
-        header('Location: ' . BASE_URL . '/pages/auth/login.html' . $query, true, 302);
-        exit;
+        render_page('login', [], 'base');
+        return;
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -139,8 +137,8 @@ function handle_login(): void {
 
 function handle_register(): void {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        header('Location: ' . BASE_URL . '/pages/auth/register.html', true, 302);
-        exit;
+        render_page('register', [], 'base');
+        return;
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -963,35 +961,44 @@ function handle_admin_reports(): void {
 // ROUTE TABLE
 // =============================================================================
 $routes = [
-    ['GET',  '#^/$#',                                   'index',                    static fn() => redirect_to_supabase('public/index.html')],
-    ['GET',  '#^/about$#',                              'about',                    static fn() => redirect_to_supabase('public/index.html')],
-    ['GET',  '#^/login$#',                              'login',                    static fn() => redirect_to_supabase('auth/login.html')],
-    ['GET',  '#^/register$#',                           'register',                 static fn() => redirect_to_supabase('auth/register.html')],
-    ['GET',  '#^/logout$#',                             'logout',                   static fn() => redirect_to_supabase('auth/logout.html')],
+    ['GET',  '#^/$#',                                   'index',                    static fn() => handle_index()],
+    ['GET',  '#^/about$#',                              'about',                    static fn() => handle_about()],
+    ['GET|POST', '#^/login$#',                          'login',                    static fn() => handle_login()],
+    ['GET|POST', '#^/register$#',                       'register',                 static fn() => handle_register()],
+    ['GET',  '#^/logout$#',                             'logout',                   static fn() => handle_logout()],
 
-    ['GET',  '#^/dashboard$#',                          'voter_dashboard',          static fn() => redirect_to_supabase('voter/dashboard.html')],
-    ['GET',  '#^/my-elections$#',                       'my_elections',             static fn() => redirect_to_supabase('voter/elections.html')],
-    ['GET',  '#^/elections$#',                          'elections_list',           static fn() => redirect_to_supabase('public/elections.html')],
-    ['GET',  '#^/elections/(\d+)$#',                    'election_detail',          static fn() => redirect_to_supabase('public/elections.html')],
-    ['GET',  '#^/elections/(\d+)/vote$#',               'election_vote',            static fn() => redirect_to_supabase('voter/elections.html')],
-    ['GET',  '#^/elections/(\d+)/confirm$#',            'election_vote_confirm',    static fn() => redirect_to_supabase('voter/elections.html')],
-    ['GET',  '#^/vote-success$#',                       'vote_success',             static fn() => redirect_to_supabase('voter/status.html')],
-    ['GET',  '#^/voting-status$#',                      'voting_status',            static fn() => redirect_to_supabase('voter/status.html')],
-    ['GET',  '#^/profile$#',                            'voter_profile',             static fn() => redirect_to_supabase('voter/dashboard.html')],
+    ['GET',  '#^/dashboard$#',                          'voter_dashboard',          static fn() => handle_voter_dashboard()],
+    ['GET',  '#^/my-elections$#',                       'my_elections',             static fn() => handle_my_elections()],
+    ['GET',  '#^/elections$#',                          'elections_list',           static fn() => handle_elections_list()],
+    ['GET',  '#^/elections/(\d+)$#',                    'election_detail',          static fn($m) => handle_election_detail((int)$m[1])],
+    ['GET',  '#^/elections/(\d+)/vote$#',               'election_vote',            static fn($m) => handle_election_vote((int)$m[1])],
+    ['GET',  '#^/elections/(\d+)/confirm$#',            'election_vote_confirm',    static fn($m) => handle_election_vote_confirm((int)$m[1])],
+    ['POST', '#^/elections/(\d+)/cast-vote$#',           'election_cast_vote',       static fn($m) => handle_election_cast_vote((int)$m[1])],
+    ['GET',  '#^/vote-success$#',                       'vote_success',             static fn() => handle_vote_success()],
+    ['GET',  '#^/voting-status$#',                      'voting_status',            static fn() => handle_voting_status()],
+    ['GET|POST', '#^/profile$#',                        'voter_profile',             static fn() => handle_voter_profile()],
 
-    ['GET',  '#^/candidates$#',                         'candidates_list',          static fn() => redirect_to_supabase('public/candidates.html')],
-    ['GET',  '#^/candidates/(\d+)$#',                   'candidate_profile',        static fn() => redirect_to_supabase('public/candidates.html')],
-    ['GET',  '#^/results$#',                            'results_list',             static fn() => redirect_to_supabase('public/results.html')],
-    ['GET',  '#^/results/(\d+)$#',                      'results_detail',           static fn() => redirect_to_supabase('public/results.html')],
-    ['GET',  '#^/historical-elections$#',               'historical_elections',     static fn() => redirect_to_supabase('public/elections.html')],
+    ['GET',  '#^/candidates$#',                         'candidates_list',           static fn() => handle_candidates_list()],
+    ['GET',  '#^/candidates/(\d+)$#',                   'candidate_profile',         static fn($m) => handle_candidate_profile((int)$m[1])],
+    ['GET',  '#^/results$#',                            'results_list',              static fn() => handle_results_list()],
+    ['GET',  '#^/results/(\d+)$#',                      'results_detail',            static fn($m) => handle_results_detail((int)$m[1])],
+    ['GET',  '#^/historical-elections$#',               'historical_elections',      static fn() => handle_historical_elections()],
 
-    ['GET',  '#^/admin/login$#',                        'admin_login',              static fn() => redirect_to_supabase('auth/login.html')],
-    ['GET',  '#^/admin/dashboard$#',                    'admin_dashboard',          static fn() => redirect_to_supabase('admin/dashboard.html')],
-    ['GET',  '#^/admin/elections$#',                    'admin_elections',           static fn() => redirect_to_supabase('admin/elections.html')],
-    ['GET',  '#^/admin/candidates$#',                   'admin_candidates',         static fn() => redirect_to_supabase('admin/candidates.html')],
-    ['GET',  '#^/admin/voters$#',                       'admin_voters',              static fn() => redirect_to_supabase('admin/dashboard.html#voter-applications')],
-    ['GET',  '#^/admin/results$#',                      'admin_results',             static fn() => redirect_to_supabase('public/results.html')],
-    ['GET',  '#^/admin/reports$#',                      'admin_reports',             static fn() => redirect_to_supabase('admin/audit.html')],
+    ['GET|POST', '#^/admin/login$#',                    'admin_login',               static fn() => handle_admin_login()],
+    ['GET',  '#^/admin/dashboard$#',                    'admin_dashboard',           static fn() => handle_admin_dashboard()],
+    ['GET',  '#^/admin/elections$#',                    'admin_elections',           static fn() => handle_admin_elections()],
+    ['POST', '#^/admin/elections/create$#',             'admin_create_election',     static fn() => handle_admin_create_election()],
+    ['POST', '#^/admin/elections/(\d+)/status$#',       'admin_update_election_status', static fn($m) => handle_admin_update_election_status((int)$m[1])],
+    ['GET',  '#^/admin/candidates$#',                   'admin_candidates',          static fn() => handle_admin_candidates()],
+    ['POST', '#^/admin/candidates/create$#',            'admin_create_candidate',    static fn() => handle_admin_create_candidate()],
+    ['POST', '#^/admin/candidates/(\d+)/delete$#',      'admin_delete_candidate',    static fn($m) => handle_admin_delete_candidate((int)$m[1])],
+    ['GET',  '#^/admin/voters$#',                       'admin_voters',              static fn() => handle_admin_voters()],
+    ['POST', '#^/admin/voters/(\d+)/toggle$#',          'admin_toggle_voter',        static fn($m) => handle_admin_toggle_voter((int)$m[1])],
+    ['POST', '#^/admin/voters/(\d+)/verify$#',          'admin_verify_voter',        static fn($m) => handle_admin_verify_voter((int)$m[1])],
+    ['POST', '#^/admin/voters/(\d+)/update-details$#',  'admin_update_voter_details', static fn($m) => handle_admin_update_voter_details((int)$m[1])],
+    ['POST', '#^/admin/voters/(\d+)/reupload-certificate$#', 'admin_reupload_voter_certificate', static fn($m) => handle_admin_reupload_voter_certificate((int)$m[1])],
+    ['GET',  '#^/admin/results$#',                      'admin_results',             static fn() => handle_admin_results()],
+    ['GET',  '#^/admin/reports$#',                      'admin_reports',             static fn() => handle_admin_reports()],
 ];
 
 // -----------------------------------------------------------------------------
